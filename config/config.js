@@ -5,7 +5,6 @@ var Web3 = require("web3");
 var web3 = new Web3;
 web3.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
 require('dotenv').config();
-const MC_address = fs.readFileSync('./MC_address.txt').toString();
 
 
 //讀進合約abi,bytecode
