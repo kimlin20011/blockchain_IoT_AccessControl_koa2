@@ -1,0 +1,27 @@
+{
+  "name": "koa_blockchainiot_accesscontrol",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimlin20011/blockchain_IoT_AccessControl_koa2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimlin20011/blockchain_IoT_AccessControl_koa2/issues"
+  },
+  "homepage": "https://github.com/kimlin20011/blockchain_IoT_AccessControl_koa2#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "eth-crypto": "^1.3.4",
+    "koa": "^2.7.0",
+    "koa-logger": "^3.2.0",
+    "koa-views": "^6.2.0",
+    "web3": "^1.0.0-beta.55"
+  }
+}
