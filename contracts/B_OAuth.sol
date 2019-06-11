@@ -10,8 +10,8 @@ contract B_OAuth {
     mapping(address => bool) participants;//增加運送合約參與者
     mapping(address => bytes32) access_token;
 
-    event participantAdded(address indexed newParticipant);
-    event tokenRelease(address indexed msg_sender,bytes32 access_token);
+    event participantAdded(address newParticipant);
+    event tokenRelease(address msg_sender,bytes32 access_token);
 
     modifier isParticipant(address _account) {
         require(participants[_account] == true,"account forbidden");

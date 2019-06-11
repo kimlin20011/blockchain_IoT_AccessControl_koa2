@@ -2,10 +2,6 @@
 //var net = require('net');
 const fs = require('fs');
 
-/*var Web3 = require("web3");
-var web3 = new Web3;
-web3.setProvider('ws://localhost:8545');*/
-
 const Web3 = require('web3');
 // use the given Provider, e.g in Mist, or instantiate a new websocket provider
 const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545');
@@ -14,43 +10,47 @@ const config = require('../config/config');
 const unlockAccount = require('./unlock');
 
 module.exports = async function deploy_contract() {
-    let B_OAuthBytecode = config.B_OAuth.bytecode;
     let B_OAuthAbi = config.B_OAuth.abi;
 //取得目前geth中第一個account
     let nowAccount ="";
-    await web3.eth.getAccounts((err, res) => {nowAccount = res[0]});
+    await web3.eth.getAccounts((err, res) => {
+        nowAccount = res[0];
+        console.log(`nowAccount:${nowAccount}`)
+    });
 
     let password = config.geth.password;
     let B_OAuth = new web3.eth.Contract(B_OAuthAbi);
-
+    B_OAuth.options.address = await fs.readFileSync('./B_OAuth_address.txt').toString();
+    console.log(`address: ${B_OAuth.options.address}`)
     // 解鎖
     let unlock = await unlockAccount(nowAccount,password);
     if (!unlock) {
-        console.log(`not unlock`)
+        console.log(`not unlock`);
         return;
     }
 
     return new Promise((resolve, reject) => {
-        B_OAuth
-            .deploy({
-                data: B_OAuthBytecode
-            })
+
+        let result ={}
+        B_OAuth.methods
+            .authentication_req()
             .send({
                 from: nowAccount,
-                gas: 6000000
-            })
-            .on('error', function(error){
-                reject(`部署失敗${error}`);
+                gas: 3000000
             })
             .on("receipt", function(receipt) {
-                console.log(receipt);
-                // 更新合約介面
-                let B_OAuth_Address = receipt.contractAddress;
-                //將新生成的mc地址寫進.txt檔案
-                fs.writeFileSync('./B_OAuth_address.txt', B_OAuth_Address);
-                resolve(`合約地址:${B_OAuth_Address}`);
+                result.receipt= receipt;
+                console.log(receipt);//多加
+                //取得adc回傳的event
+                //回傳值*/
+                resolve(receipt);
             })
+            .on("error", function(error) {
+                result.status = `智能合約操作失敗`;
+                result.error= error.toString();
+                console.log(result);
+                reject(result);
+            });
     });
 
 };
-
