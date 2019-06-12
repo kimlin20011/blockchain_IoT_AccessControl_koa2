@@ -21,9 +21,9 @@ app.use(views(path.join(__dirname, './views'), {
     extension: 'ejs'
 }));
 
-// 初始化路由middleware
+// initial router middleware
 app.use(routers.routes()).use(routers.allowedMethods());
 
-// 监听启动端口
+// listen port
 app.listen( config.port );
 console.log(`the server(Koa2) is start at port ${config.port}`);

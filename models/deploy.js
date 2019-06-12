@@ -1,16 +1,10 @@
 "use strict";
-//var net = require('net');
 const fs = require('fs');
-
-/*var Web3 = require("web3");
-var web3 = new Web3;
-web3.setProvider('ws://localhost:8545');*/
-
+const config = require('../config/config');
+let gethWebsocketUrl = config.geth.gethWebsocketUrl;
 const Web3 = require('web3');
 // use the given Provider, e.g in Mist, or instantiate a new websocket provider
-const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545');
-
-const config = require('../config/config');
+const web3 = new Web3(Web3.givenProvider || gethWebsocketUrl);
 const unlockAccount = require('./unlock');
 
 module.exports = async function deploy_contract() {

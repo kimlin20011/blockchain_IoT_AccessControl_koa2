@@ -16,6 +16,8 @@ module.exports ={
         //account: nowAccount,
         //暫時不用
         account:'0x8424dfd424a731ebefc1dbba373dc678430acf0b',
-        password: process.env.password
+        password: process.env.password,
+        gethWebsocketUrl:`ws://localhost:8546`,
+        keystoreDir:`C:\\Users\\percomlab\\chain_new\\data\\keystore`
     }
 };

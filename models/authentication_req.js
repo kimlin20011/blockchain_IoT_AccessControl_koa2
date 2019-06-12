@@ -1,12 +1,11 @@
 "use strict";
 //var net = require('net');
 const fs = require('fs');
-
+const config = require('../config/config');
+let gethWebsocketUrl = config.geth.gethWebsocketUrl;
 const Web3 = require('web3');
 // use the given Provider, e.g in Mist, or instantiate a new websocket provider
-const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545');
-
-const config = require('../config/config');
+const web3 = new Web3(Web3.givenProvider || gethWebsocketUrl);
 const unlockAccount = require('./unlock');
 
 module.exports = async function deploy_contract() {
@@ -41,6 +40,7 @@ module.exports = async function deploy_contract() {
             .on("receipt", function(receipt) {
                 result.receipt= receipt;
                 console.log(receipt);//多加
+                fs.writeFileSync('./accessToken.txt', receipt.events.tokenRelease.returnValues.access_token);
                 //取得adc回傳的event
                 //回傳值*/
                 resolve(receipt);
@@ -52,5 +52,4 @@ module.exports = async function deploy_contract() {
                 reject(result);
             });
     });
-
 };

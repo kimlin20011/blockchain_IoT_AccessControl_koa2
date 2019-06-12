@@ -24,4 +24,4 @@ module.exports = {
         res.result = auth_req_result;
         ctx.body = res;
     },
-}
+};
