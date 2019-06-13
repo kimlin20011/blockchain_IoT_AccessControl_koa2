@@ -12,6 +12,13 @@ git clone https://github.com/kimlin20011/blockchain_IoT_AccessControl_koa2.git
 ```shell=
 npm install
 ```
+
+* 需要新增`.env`檔
+```javascript=
+HOST = 'localhost'
+password = '自行修改geth的設定密碼'
+```
+
 * start project
 ```shell=
 npm start
@@ -20,11 +27,7 @@ npm start
 ```shell=
 npm install -g ganache-cli
 ```
-* 需要新增`.env`檔
-```javascript=
-HOST = 'localhost'
-password = '自行修改geth的設定密碼'
-```
+
 
 
 ## 區塊鏈安裝  
