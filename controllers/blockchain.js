@@ -16,12 +16,10 @@ module.exports = {
     },
     async auth_req(ctx) {
         // let formData = ctx.request.body
-        let res = {
-            result:{},
-        };
+        let res = {};
 
         let auth_req_result =  await authentication_req();
-        res.result = auth_req_result;
+        res = auth_req_result;
         //重新定向
         // 308 is post
         console.log(`redirecting`);
