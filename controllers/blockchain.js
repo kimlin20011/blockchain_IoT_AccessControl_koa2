@@ -11,8 +11,8 @@ module.exports = {
 
         let deploy_result =  await deploy();
         res.result = deploy_result;
+
         ctx.body = res;
-        return
     },
     async auth_req(ctx) {
         // let formData = ctx.request.body
@@ -22,6 +22,12 @@ module.exports = {
 
         let auth_req_result =  await authentication_req();
         res.result = auth_req_result;
+        //重新定向
+        // 308 is post
+        console.log(`redirecting`);
+        ctx.status = 308;
+        ctx.redirect('/offchain/SAG');
+        //回傳
         ctx.body = res;
     },
 };

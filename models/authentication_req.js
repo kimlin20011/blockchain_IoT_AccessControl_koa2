@@ -29,8 +29,7 @@ module.exports = async function deploy_contract() {
     }
 
     return new Promise((resolve, reject) => {
-
-        let result ={}
+        let result ={};
         B_OAuth.methods
             .authentication_req()
             .send({
@@ -38,12 +37,10 @@ module.exports = async function deploy_contract() {
                 gas: 3000000
             })
             .on("receipt", function(receipt) {
-                result.receipt= receipt;
-                console.log(receipt);//多加
                 fs.writeFileSync('./accessToken.txt', receipt.events.tokenRelease.returnValues.access_token);
-                //取得adc回傳的event
+                //送出驗證求取伺服器ip授權層序
                 //回傳值*/
-                resolve(receipt);
+                resolve(receipt.events.tokenRelease.returnValues.access_token);
             })
             .on("error", function(error) {
                 result.status = `智能合約操作失敗`;
