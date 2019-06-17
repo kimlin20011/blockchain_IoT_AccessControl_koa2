@@ -1,4 +1,5 @@
 const SAG = require('../models/send_access_grant');
+const iot_sub_token = require('../models/iot_sub_token');
 
 module.exports = {
     async send_access_grant(ctx) {
@@ -18,5 +19,9 @@ module.exports = {
         res.result = SAG_result;
         ctx.body = res;
     },
+    async iot_sub_token(ctx) {
+        let iot_sub_token_result =  await iot_sub_token();
+        ctx.body = iot_sub_token_result;
+    }
 
 };

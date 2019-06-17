@@ -39,16 +39,21 @@ module.exports = async function SAG(info) {
     send_msg.signed_message= signed_message;
     send_msg.auth_dur = config.auth.auth_dur;
 
-    await request.post({
-        url:"http://localhost:3002/offchain/access_grant",
-        body: send_msg,
-        json: true,
-    }, function(err,httpResponse,body){
-        console.log(`resceive ip granted response`);
-        console.log(body);
-        send_msg.responseBody = body;
+    let resposnse_msg ={};
+    return new Promise((resolve, reject) => {
+        request.post({
+            url:"http://localhost:3002/offchain/access_grant",
+            body: send_msg,
+            json: true,
+        }, function(err,httpResponse,body){
+            if (err) {
+                reject(err);
+                return;
+            }
+            console.log(`receive ip granted response`);
+            console.log(body);
+            resolve(body);
+        });
     });
-
-    return send_msg;
 
 };

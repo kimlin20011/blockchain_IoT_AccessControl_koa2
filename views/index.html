@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Blockchain_OAuth-example: IoT used</title>
+	<style>
+		.flex {
+			display: flex;
+		}
+
+		.item {
+			flex: 1;
+			padding: 2rem;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="flex">
+		<div class="item">
+			<h3>Login IOT Device of Blockchian OAuth</h3>
+			<button id="IOTSyncButton">IoT裝置區塊鏈同步</button>
+			<h5 id="IoTStatus">IOT區塊鏈同步狀態：未同步</h5>
+	<!--		<h5 id="contractAddress">合約位址: </h5>
+			<input id="deployedContractAddressInput" type="text" placeholder="請輸入既有合約位址" />
+			<button id="loadDeployedContractButton">載入既有合約位址</button>
+			<button id="deployNewContractButton">部署新合約</button>-->
+
+			<hr>
+			<h3>Blockchian_OAuth認證登入</h3>
+			<h5 id="loginStatus">登入狀態:未登入</h5>
+			<h5 >目前account</h5>
+			<select id="whoami"></select>
+			<h5 id="accountStatus"> </h5>
+			<h5 >預期授權存取時間</h5>
+			<input id="authDuration" type="number" placeholder="請預期使用IoT裝置服務之時間(分鐘)" /> <br /><br />
+			<button id="B_OAuth_login_Button">B_OAuth登入</button>
+
+			<hr>
+			<h3>與IoT互動</h3>
+			<h5 id="tempData">現在氣溫: </h5>
+			<h5 id="gpsData">現在位置: </h5>
+			<button id="updateIoTDataButton">更新資料</button>
+
+		</div>
+
+		<div class="item" style="width:500px;">
+			<h3>執行結果</h3>
+			<pre id="logger"></pre>
+		</div>
+	</div>
+
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+	<script src="javascripts/index_frontend.js"></script>
+</body>
+
+</html>

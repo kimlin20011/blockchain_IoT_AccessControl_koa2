@@ -1,5 +1,6 @@
 const authentication_req = require('../models/authentication_req');
 const deploy = require('../models/deploy');
+const getAccounts = require('../models/getAccounts');
 
 module.exports = {
 
@@ -28,4 +29,9 @@ module.exports = {
         //回傳
         ctx.body = res;
     },
+    async getAccounts(ctx) {
+        // let formData = ctx.request.body
+        let accounts =  await getAccounts();
+        ctx.body = accounts;
+    }
 };
