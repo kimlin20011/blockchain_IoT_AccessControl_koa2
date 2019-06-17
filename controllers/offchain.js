@@ -3,7 +3,7 @@ const iot_sub_token = require('../models/iot_sub_token');
 
 module.exports = {
     async send_access_grant(ctx) {
-        console.log(ctx.request.ip);
+        console.log(`ip receive by sag ${ctx.request.ip}`);
 // 將ip前面表頭去掉
 // let ip = req.ip.split(':').pop();
 // ip = ip.replace('::ffff:', '');

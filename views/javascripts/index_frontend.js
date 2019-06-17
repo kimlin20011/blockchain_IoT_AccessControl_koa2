@@ -7,6 +7,7 @@ let deployNewContractButton = $('#deployNewContractButton');*/
 let IOTSyncButton = $('#IOTSyncButton');
 
 let whoami = $('#whoami');
+let whoamiButton = $('#whoamiButton');
 let authDuration = $('#authDuration');
 let B_OAuth_login_Button = $('#B_OAuth_login_Button');
 let updateIoTDataButton = $('#updateIoTDataButton');
@@ -26,6 +27,12 @@ function log(...inputs) {
 }
 
 
+// 當按下登入按鍵時
+whoamiButton.on('click', async function () {
+    nowAccount = whoami.val();
+    log(nowAccount, '目前選擇的以太帳戶')
+})
+
 // 載入使用者至 select tag
 $.get('/blockchain/accounts', function (accounts) {
     for (let account of accounts) {
@@ -33,9 +40,7 @@ $.get('/blockchain/accounts', function (accounts) {
     }
     nowAccount = whoami.val();
 
-    update.trigger('click')
-
-    log(accounts, '以太帳戶')
+    log(nowAccount, '目前選擇的以太帳戶')
 })
 
 //按下B_OAuth登入之按鈕時
@@ -54,17 +59,19 @@ B_OAuth_login_Button.on('click', function () {
                 result : result,
             });
 
-			if(result == true){
+			if(result.result.result.status === true){
                 log('登入狀態:已登入');
                 IoTLogined =true ;
-                $('#loginStatus').text(`登入狀態:已登入`);
+                $('#loginStatus').html('登入狀態: <b style="color: mediumblue">已登入</b>');
+                doneTransactionStatus();
 			}else{
                 log('登入狀態:登入失敗');
                 IoTLogined = false;
-                $('#loginStatus').text(`登入狀態:未登入`);
+                $('#loginStatus').html('登入狀態: <b style="color: red">未登入</b>');
                 doneTransactionStatus();
 			}
-        })
+        });
+
 });
 
 

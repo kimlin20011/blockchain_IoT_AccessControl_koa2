@@ -8,14 +8,14 @@ const Web3 = require('web3');
 const web3 = new Web3(Web3.givenProvider || gethWebsocketUrl);
 const unlockAccount = require('./unlock');
 
-module.exports = async function deploy_contract() {
+module.exports = async function deploy_contract(data) {
     let B_OAuthAbi = config.B_OAuth.abi;
 //取得目前geth中第一個account
-    let nowAccount ="";
-    await web3.eth.getAccounts((err, res) => {
+    let nowAccount =data.account;
+/*    await web3.eth.getAccounts((err, res) => {
         nowAccount = res[0];
         console.log(`nowAccount:${nowAccount}`)
-    });
+    });*/
 
     let password = config.geth.password;
     let B_OAuth = new web3.eth.Contract(B_OAuthAbi);
@@ -43,7 +43,7 @@ module.exports = async function deploy_contract() {
                 resolve(receipt.events.tokenRelease.returnValues.access_token);
             })
             .on("error", function(error) {
-                result.status = `智能合約操作失敗`;
+                result.info =`智能合約驗證或操作失敗`;
                 result.error= error.toString();
                 console.log(result);
                 reject(result);

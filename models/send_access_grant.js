@@ -13,17 +13,18 @@ module.exports = async function SAG(info) {
     message.ip=info.ip;
     message.accessToken= fs.readFileSync('./accessToken.txt').toString();
     //message.accessToken= "123";
-    message.auth_dur=config.auth.auth_dur;
-
+    //message.auth_dur=config.auth.auth_dur;
+    message.auth_dur=info.auth_dur;
     let data = JSON.stringify(message);
     console.log(`message:${data}`);
     let password = config.geth.password;
 
-    let nowAccount ="";
+    let nowAccount = info.account;
+    /*let nowAccount ="";
     await web3.eth.getAccounts((err, res) => {
         nowAccount = res[0];
         console.log(`nowAccount:${nowAccount}`)
-    });
+    });*/
     let signed_message = "";
 
     //將message簽名
@@ -37,9 +38,9 @@ module.exports = async function SAG(info) {
     // send the msg to IoT
     let send_msg = {};
     send_msg.signed_message= signed_message;
-    send_msg.auth_dur = config.auth.auth_dur;
+    send_msg.auth_dur = message.auth_dur;
 
-    let resposnse_msg ={};
+
     return new Promise((resolve, reject) => {
         request.post({
             url:"http://localhost:3002/offchain/access_grant",

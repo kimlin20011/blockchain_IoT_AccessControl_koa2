@@ -18,16 +18,25 @@ module.exports = {
     async auth_req(ctx) {
         // let formData = ctx.request.body
         let res = {};
+        let data = {};
+        data.account = ctx.request.body.account;
+        data.auth_dur = ctx.request.body.auth_dur;
+        try {
+            res =  await authentication_req(data);
 
-        let auth_req_result =  await authentication_req();
-        res = auth_req_result;
-        //重新定向
-        // 308 is post
-        console.log(`redirecting`);
-        ctx.status = 308;
-        ctx.redirect('/offchain/SAG');
-        //回傳
-        ctx.body = res;
+            ///
+            res.auth_dur = data.auth_dur;
+            res.account = data.account;
+            //res = auth_req_result;
+            //重新定向
+            // 308 is post
+            console.log(`redirecting`);
+            ctx.status = 308;
+            ctx.body = res;
+            ctx.redirect('/offchain/SAG');
+        }catch(error) {
+            ctx.body = error;
+        }
     },
     async getAccounts(ctx) {
         // let formData = ctx.request.body
