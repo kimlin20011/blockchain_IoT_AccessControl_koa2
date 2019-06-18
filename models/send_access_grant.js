@@ -12,19 +12,12 @@ module.exports = async function SAG(info) {
     let message ={};
     message.ip=info.ip;
     message.accessToken= fs.readFileSync('./accessToken.txt').toString();
-    //message.accessToken= "123";
-    //message.auth_dur=config.auth.auth_dur;
     message.auth_dur=info.auth_dur;
     let data = JSON.stringify(message);
     console.log(`message:${data}`);
     let password = config.geth.password;
 
     let nowAccount = info.account;
-    /*let nowAccount ="";
-    await web3.eth.getAccounts((err, res) => {
-        nowAccount = res[0];
-        console.log(`nowAccount:${nowAccount}`)
-    });*/
     let signed_message = "";
 
     //將message簽名

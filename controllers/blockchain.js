@@ -3,7 +3,6 @@ const deploy = require('../models/deploy');
 const getAccounts = require('../models/getAccounts');
 
 module.exports = {
-
     async deploy_contract(ctx) {
        // let formData = ctx.request.body
         let res = {

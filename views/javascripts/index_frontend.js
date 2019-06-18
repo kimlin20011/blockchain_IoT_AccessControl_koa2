@@ -62,12 +62,12 @@ B_OAuth_login_Button.on('click', function () {
 			if(result.result.result.status === true){
                 log('登入狀態:已登入');
                 IoTLogined =true ;
-                $('#loginStatus').html('登入狀態: <b style="color: mediumblue">已登入</b>');
+                $('#loginStatus').html(`登入狀態: ${nowAccount }<b style="color: mediumblue">登入成功</b>`);
                 doneTransactionStatus();
 			}else{
                 log('登入狀態:登入失敗');
                 IoTLogined = false;
-                $('#loginStatus').html('登入狀態: <b style="color: red">未登入</b>');
+                $('#loginStatus').html(`登入狀態: ${nowAccount }<b style="color: red">登入失敗</b>`);
                 doneTransactionStatus();
 			}
         });
