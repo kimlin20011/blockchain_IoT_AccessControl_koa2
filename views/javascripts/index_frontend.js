@@ -10,12 +10,16 @@ let whoami = $('#whoami');
 let whoamiButton = $('#whoamiButton');
 let authDuration = $('#authDuration');
 let B_OAuth_login_Button = $('#B_OAuth_login_Button');
-let updateIoTDataButton = $('#updateIoTDataButton');
 
 let logger = $('#logger');
 let nowAccount = "";
 
-let IoTLogined = false;
+// IOT button
+let updateIoTDataButton = $('#updateIoTDataButton');
+
+//let IoTLogined = false;
+// used mapping
+let IoTLoginedMap = new Map();
 
 function log(...inputs) {
 	for (let input of inputs) {
@@ -30,8 +34,9 @@ function log(...inputs) {
 // 當按下登入按鍵時
 whoamiButton.on('click', async function () {
     nowAccount = whoami.val();
+    islogined();
     log(nowAccount, '目前選擇的以太帳戶')
-})
+});
 
 // 載入使用者至 select tag
 $.get('/blockchain/accounts', function (accounts) {
@@ -39,15 +44,14 @@ $.get('/blockchain/accounts', function (accounts) {
         whoami.append(`<option value="${account}">${account}</option>`)
     }
     nowAccount = whoami.val();
-
+    islogined();
     log(nowAccount, '目前選擇的以太帳戶')
-})
+});
 
 //按下B_OAuth登入之按鈕時
 B_OAuth_login_Button.on('click', function () {
-  //  if (bankAddress != "") {
-
     waitTransactionStatus();
+    islogined();
 
         $.post('/blockchain/auth_req', {
             //address: B_OAuthAddress,
@@ -61,13 +65,18 @@ B_OAuth_login_Button.on('click', function () {
 
 			if(result.result.result.status === true){
                 log('登入狀態:已登入');
-                IoTLogined =true ;
-                $('#loginStatus').html(`登入狀態: ${nowAccount }<b style="color: mediumblue">登入成功</b>`);
+                //IoTLogined =true ;
+                //set mapping value
+                IoTLoginedMap.set(nowAccount, `succeeded`);
+                $('#loginStatus').html(`登入狀態: ${nowAccount}<b style="color: mediumblue">登入成功 ${IoTLoginedMap.get(nowAccount)}</b>`);
+                islogined();
                 doneTransactionStatus();
 			}else{
                 log('登入狀態:登入失敗');
-                IoTLogined = false;
-                $('#loginStatus').html(`登入狀態: ${nowAccount }<b style="color: red">登入失敗</b>`);
+                //IoTLogined = false;
+                IoTLoginedMap.set(nowAccount, `failed`);
+                $('#loginStatus').html(`登入狀態: ${nowAccount}<b style="color: red">登入失敗 ${IoTLoginedMap.get(nowAccount)}</b>`);
+                islogined();
                 doneTransactionStatus();
 			}
         });
@@ -83,6 +92,26 @@ IOTSyncButton.on('click', function () {
     $('#IoTStatus').text(`IOT區塊鏈同步狀態：已同步`);
     doneTransactionStatus();
 });
+
+
+updateIoTDataButton.on('click', function () {
+    if (IoTLoginedMap.get(nowAccount) === `succeeded`){
+        $('#isGranted').html(`登入狀態: ${nowAccount}<b style="color: green">您已登入，可開始操作device</b>`);
+        $('#tempData').text(`現在氣溫: ${1+Math.floor(Math.random()*50)}`);
+        $('#gpsData').text(`現在濕度: ${1+Math.floor(Math.random()*50)}`);
+    }else{
+        $('#isGranted').html(`登入狀態: ${nowAccount}<b style="color: red">您尚未登入，請先從上方登入</b>`);
+    }
+});
+
+
+function islogined() {
+    if (IoTLoginedMap.get(nowAccount) === `succeeded`){
+        $('#isGranted').html(`登入狀態: ${nowAccount}<b style="color: green">您已登入，可開始操作device</b>`);
+    }else{
+        $('#isGranted').html(`登入狀態: ${nowAccount}<b style="color: red">您尚未登入，請先從上方登入</b>`);
+    }
+}
 
 function waitTransactionStatus() {
 	$('#accountStatus').html('帳戶狀態 <b style="color: blue">(等待區塊鏈交易驗證中...)</b>')
