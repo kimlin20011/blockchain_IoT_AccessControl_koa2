@@ -20,7 +20,7 @@ module.exports = async function deploy_contract() {
     // 解鎖
     let unlock = await unlockAccount(nowAccount,password);
     if (!unlock) {
-        console.log(`not unlock`)
+        console.log(`not unlock`);
         return;
     }
 
