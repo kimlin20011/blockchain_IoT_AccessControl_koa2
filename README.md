@@ -1,4 +1,4 @@
-﻿# B_OAuth_(Blockchain_OAuth in IoT system)（高等軟體設計期末專案）
+﻿# B_OAuth(Blockchain_OAuth in IoT system) 高等軟體設計期末專案
 
 * [user端專案網址](https://github.com/kimlin20011/blockchain_IoT_AccessControl_koa2)
 * [IoT端專案網址](https://github.com/kimlin20011/koa_IoT_blockchain)
@@ -37,8 +37,6 @@
 # Figure
 ## 區塊鏈第三方驗證之動態循序圖
 ![](https://i.imgur.com/oaKvofk.jpg)
-
-* 
 
 ## user後端-Koa2之應用架構
 ![](https://i.imgur.com/00HN098.jpg)
