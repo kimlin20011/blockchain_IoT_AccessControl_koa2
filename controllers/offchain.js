@@ -1,18 +1,26 @@
 const SAG = require('../models/send_access_grant');
 const iot_sub_token = require('../models/iot_sub_token');
+const machineIP = require('../models/machineIP');
 
 module.exports = {
     async send_access_grant(ctx) {
 
-         //let ip = req.ip.split(':');
-        console.log(`ip receive by SAG ${ctx.request.ip}`);
+        let data = ctx.request.body;
 
-// 將ip前面表頭去掉
-// let ip = req.ip.split(':').pop();
-// ip = ip.replace('::ffff:', '');
-        let data = ctx.request.body
-        //data.ip = ctx.request.ip;
-        data.ip = `::ffff:127.0.0.1`;
+        data.ip = await machineIP(data);
+/*        if(ctx.request.ip === `::1`){
+            data.ip = `127.0.0.1`;
+        }else{
+            let ip = ctx.request.ip.split(':');
+            data.ip = ip[3];
+            console.log(`ip receive by SAG ${ctx.request.ip}`);
+            console.log(`ip split ${ip[3]}`);
+        }*/
+
+
+/*        let ip_details = req.socket.address();
+        console.log(ip_details);
+        // { address: '::ffff:127.0.0.1', family: 'IPv6', port: 3001 */
         let res = {
             result:{},
         };

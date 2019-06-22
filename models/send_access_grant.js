@@ -6,7 +6,6 @@ const Web3 = require('web3');
 // use the given Provider, e.g in Mist, or instantiate a new websocket provider
 const web3 = new Web3(Web3.givenProvider || gethWebsocketUrl);
 
-
 module.exports = async function SAG(info) {
     //講access grantcode内文包在message中
     let message ={};

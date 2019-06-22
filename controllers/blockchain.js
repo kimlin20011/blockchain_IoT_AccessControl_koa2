@@ -22,7 +22,6 @@ module.exports = {
         data.auth_dur = ctx.request.body.auth_dur;
         try {
             res =  await authentication_req(data);
-
             ///
             res.auth_dur = data.auth_dur;
             res.account = data.account;
