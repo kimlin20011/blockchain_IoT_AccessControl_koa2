@@ -10,7 +10,8 @@ const routers = require('./routers/index');
 
 const app = new Koa();
 
-const staticPath = './views';
+//const staticPath = './views';
+const staticPath = './statics';
 
 // http logger
 app.use(koaLogger());

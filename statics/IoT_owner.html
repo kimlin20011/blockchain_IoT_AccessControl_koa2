@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blockchain_OAuth-example: IoT owner site</title>
+
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+    <style>
+        .flex {
+            display: flex;
+        }
+
+        .item {
+            flex: 1;
+            padding: 2rem;
+        }
+        body {
+            background-color: #c72c41;
+        }
+
+        .topic {
+            display: flex;
+        }
+
+        .topic-item {
+            flex: 1;
+            padding: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+<div class="head">
+        <img class="headimg" src="https://i.imgur.com/2ufnS6k.png"/>
+        <img class="headimg" src="https://i.imgur.com/GlBja5L.png"/>
+        <img class="headimg" src="https://i.imgur.com/gX1VYt0.png"/>
+        <img class="headimg" src="https://i.imgur.com/noDq28C.png"/>
+        <h1 style="text-align: center;">IoT Admin</h1>
+</div>
+
+<div class="flex">
+    <div class="item">
+        <div class="topic">
+            <div class="topic-item">
+                <img src="https://i.imgur.com/Rjrif3X.png"/>
+            </div>
+            <div class="topic-item">
+                <h2>Synchronize</h2>
+            </div>
+        </div>
+        <br>
+        <h3 >1. Synchronize with IoT Device</h3>
+        <button id="IOTSyncButton" style="background-color: #c72c41;">IoT裝置區塊鏈同步</button>
+        <h5 id="IoTStatus">IoT區塊鏈同步狀態：未同步</h5>
+
+        <hr>
+        <h3 >2. 目前Account</h3>
+        <select id="whoami"></select>
+        <button id="whoamiButton" style="background-color: #c72c41;">選擇此帳戶</button>
+        <h5 id="accountStatus"> </h5>
+
+        <hr>
+        <h3 >3. 增加智能合約中其他使用者之權限</h3>
+        <input id="addUser" type="text" placeholder="請輸入使用者之以太坊帳號" /> <br /><br />
+        <button id="addUserButton" style="background-color: #c72c41;">確定增加</button>
+    </div>
+
+    <div class="item" style="width:500px;">
+        <div class="topic">
+            <div class="topic-item">
+                <img src="https://i.imgur.com/dQuVooa.png?1"/>
+            </div>
+            <div class="topic-item">
+                <h2>執行結果</h2>
+            </div>
+        </div>
+        <br>
+        <div class="right-item">
+        <pre id="logger"></pre>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+        <div class="container">
+            <span class="copyright">Copyright &copy; Shun Lin. All rights reserved</span>
+        </div>
+</footer>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src="javascripts/IoT_frontend.js"></script>
+</body>
+
+</html>

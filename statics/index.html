@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Blockchain_OAuth</title>
+
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="stylesheets/style.css">
+
+	<style>
+		.flex {
+			display: flex;
+		}
+
+		.item {
+			flex: 1;
+			padding: 2rem;
+		}
+
+		.left-flex {
+			display: flex;
+		}
+
+		.left-item {
+			flex: 1;
+			padding: 2rem;
+		}
+
+		.topic {
+			display: flex;
+		}
+
+		.topic-item {
+			flex: 1;
+			padding: 2rem;
+		}
+	</style>
+</head>
+
+<body>
+		<div class="head">
+				<img class="headimg" src="https://i.imgur.com/2ufnS6k.png"/>
+				<img class="headimg" src="https://i.imgur.com/GlBja5L.png"/>
+				<img class="headimg" src="https://i.imgur.com/gX1VYt0.png"/>
+				<img class="headimg" src="https://i.imgur.com/noDq28C.png"/>
+				<h1>Blackchain OAuth</h1>
+		</div>
+
+	<div class="flex">
+		<div class="item" style="width: 50%;">
+			<div class="topic">
+				<div class="topic-item">
+					<img src="https://i.imgur.com/vUW22sE.png"/>
+				</div>
+				<div class="topic-item">
+					<h2>Login</h2>
+				</div>
+			</div>
+			<div class="left-flex">
+				<div class="left-item">
+						<div class="left-col-1">
+							<div class="title">Synchronize with <br> IoT Device</div>
+					  </div>
+				</div>
+				<div class="left-item">
+						<div class="right-col-1">
+							<button id="IOTSyncButton">IoT裝置區塊鏈同步</button>
+							<h5 id="IoTStatus">IoT區塊鏈同步狀態：未同步</h5>
+					  </div>
+				</div>
+			</div>
+	<!--		<h5 id="contractAddress">合約位址: </h5>
+			<input id="deployedContractAddressInput" type="text" placeholder="請輸入既有合約位址" />
+			<button id="loadDeployedContractButton">載入既有合約位址</button>
+			<button id="deployNewContractButton">部署新合約</button>-->
+
+			<br>
+
+			<div class="left-flex">
+				<div class="left-item">
+						<div class="left-col-2">
+					<div class="title"><br>Blockchain_OAuth <br> 認證登入<br></div>
+					</div>
+				</div>
+				<div class="left-item">
+						<div class="right-col-2">
+							<h5 id="loginStatus">登入狀態：未登入</h5>
+							<h5>目前Account</h5>
+							<select id="whoami"></select>
+							<br>
+							<button id="whoamiButton">選擇此帳戶</button>
+							<h5 id="accountStatus"> </h5>
+							<h5>預期授權存取時間 (min)</h5>
+							<input id="authDuration" type="number" placeholder="使用IoT裝置服務時間" /> <br/><br/>
+							<button id="B_OAuth_login_Button">B_OAuth登入</button>
+					</div>
+				</div>
+		  </div>
+
+			<br>
+
+			<div class="left-flex">
+					<div class="left-item">
+						<div class="left-col-3">
+						<div class="title"><br>與IoT互動<br></div>
+					</div>
+					</div>
+					<div class="left-item">
+							<div class="right-col-3">
+								<h5 id="isGranted">1. 登入狀態：</h5>
+								<h5 id="tempData">2. 現在氣溫：</h5>
+								<h5 id="gpsData">3. 現在位置：</h5>
+								<button id="updateIoTDataButton">更新資料</button>
+						  </div>
+					</div>
+			</div>
+		</div>
+
+		<div class="item" style="width: 50%;">
+			<div class="topic">
+				<div class="topic-item">
+					<img src="https://i.imgur.com/dQuVooa.png?1"/>
+				</div>
+				<div class="topic-item">
+					<h2>執行結果</h2>
+				</div>
+			</div>
+			<div class="right-item">
+				<pre id="logger"></pre>
+
+		</div>
+	</div>
+	</div>
+
+	<!-- Footer -->
+	<footer>
+			<div class="container">
+				<span class="copyright">Copyright &copy; Shun Lin. All rights reserved</span>
+			</div>
+	</footer>
+
+
+
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+	<script src="javascripts/index_frontend.js"></script>
+
+	<!--
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+</body>
+
+</html>
