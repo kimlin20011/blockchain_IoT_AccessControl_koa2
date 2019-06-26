@@ -1,4 +1,4 @@
-﻿# B_OAuth(Blockchain_OAuth in IoT system) 高等軟體設計期末專案
+﻿# blockchain_IoT_AccessControl_koa2（高等軟體設計期末專案）
 
 * [user端專案網址](https://github.com/kimlin20011/blockchain_IoT_AccessControl_koa2)
 * [IoT端專案網址](https://github.com/kimlin20011/koa_IoT_blockchain)
@@ -26,17 +26,22 @@
 * 使用 http://localhost:3001/IoT_owner.html 開啓IoT端操作界面
 
 * **部署合約** : 要先確認已經部署B_OAuth至contract
+	* 使用deploy之api
 * **注冊IoT使用者：** 需要確認以太坊公鑰已經在智能合約上面注冊
 	* 若尚未注冊，則使用addParticipant()合約API透過 contract owner發出交易注冊
+	* 使用addUser之API/或者使用IoT端之操作界面
+
+# Figure
+
+## 區塊鏈第三方驗證之動態循序圖
+![](https://i.imgur.com/oaKvofk.jpg)
+
 * **向智能合約發送權限認證API** : ==透過USER端發出auth_req API==  (localhost:3001/blockchain/auth_req)向智能合約求取IoT存取權限之token
 	* 成功的話會重新將token&sender address儲存與本地端，并且重新導向/offchain/SAG 之地址，IoT也會同時訂閲到同一份
 	* 失敗的話則丟出error結束授權過程
 * **將token簽章送至IoT端認證**: User端透過user的私鑰將（token,duration,要存取的IP位址）簽章之後，包含duration送至IoT端認證
 	* IoT透過簽章與自身的所儲存的DATA(token&sender address)使用ecrecover還原簽章之address，一方面確認簽章者身份為智能合約之授權方，一方面確認user所擁有的token是正確的
 * **IoT發送核准認證**，並核發Refresh token(下次使用者存取IoT資料是不必再透過區塊鏈求取access token)
-# Figure
-## 區塊鏈第三方驗證之動態循序圖
-![](https://i.imgur.com/oaKvofk.jpg)
 
 ## user後端-Koa2之應用架構
 ![](https://i.imgur.com/00HN098.jpg)
@@ -44,6 +49,11 @@
 * app.js為後端入口文件
 * app.js使用Koa2 middleware來處理http request，並以aspect核心邏輯來應用所有middleware
 * 在此系統中，app.js包含4個子middleware
+
+## 專案之文件目錄圖
+
+![](https://i.imgur.com/75MAoGp.png)
+
 
 
 ## 系統部署圖
@@ -66,6 +76,7 @@
 ![](https://i.imgur.com/livNVrJ.jpg)
 
 * MVC架構
+* 在此專案中statics資料夾代表view
 * http經過router之後，透過controller，引用適當的module處理
 
 # API
