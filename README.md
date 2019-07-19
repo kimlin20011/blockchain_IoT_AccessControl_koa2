@@ -171,6 +171,8 @@ npm start
 
 * 以同樣方式安裝 IoT端後端
 	* [IoT端專案網址](https://github.com/kimlin20011/koa_IoT_blockchain)
+* 使用deploy api 先部署contract
+	* 記得確認B_OAuth_Address.txt檔案內address已更改
 
 
 
